@@ -1,0 +1,8 @@
+[package]
+authors = ["Huanzo <batzi1234@googlemail.com>"]
+name = "Brainfuck-rs"
+version = "0.1.0"
+
+[dependencies]
+ascii = "0.8.6"
+clap = "2.27.1"
