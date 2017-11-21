@@ -1,6 +1,7 @@
 use std::fs::File;
-use std::io::{self, Read};
+use std::io::Read;
 
+#[derive(Eq, PartialEq)]
 enum States {
 	Empty,
 	Ready
@@ -16,7 +17,7 @@ pub struct Interpreter {
 impl Interpreter {
 	pub fn new() -> Interpreter {
 		let mut tape = Vec::<u8>::with_capacity(30000);
-		for i in 0..30000 {
+		for _i in 0..30000 {
 			tape.push(0);
 		}
 		Interpreter {
@@ -31,7 +32,7 @@ impl Interpreter {
 	pub fn read_code(&mut self, file_name: &str) {
 		let mut file = File::open(file_name).expect("file not found");
 		let mut buffer = String::new();
-		file.read_to_string(&mut buffer);
+		let _ = file.read_to_string(&mut buffer);
 
 		self.code = buffer.into_bytes();
 		self.state = States::Ready;
@@ -98,6 +99,7 @@ impl Interpreter {
 							if self.tape[self.tape_ptr] != 0 {
 								let mut closed = 0;
 								self.code_ptr -= 1;
+								#[allow(unused_comparisons)]
 								while self.code_ptr >= 0 {
 									if self.code[self.code_ptr] as char == '[' && closed == 0 {
 										break;

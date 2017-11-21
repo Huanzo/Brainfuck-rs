@@ -1,5 +1,6 @@
+#[allow(non_snake_case)]
 extern crate clap;
-use clap::{Arg, App, SubCommand};
+use clap::{Arg, App};
 
 mod interpreter;
 use interpreter::*;
